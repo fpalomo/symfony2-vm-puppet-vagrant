@@ -9,7 +9,6 @@ class development inherits development::params {
     include development::httpd
     include php_xdebug
     include phpmyadmin
-    include supervisor3
 
     class { 'timezone': timezone => 'UTC' }
 
