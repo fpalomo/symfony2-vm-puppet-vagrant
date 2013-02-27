@@ -1,0 +1,15 @@
+default:
+    extensions:
+        Behat\Symfony2Extension\Extension:
+            mink_driver: true
+            kernel:
+                env: test
+                debug: true
+        Behat\MinkExtension\Extension:
+            default_session: 'selenium2'
+            base_url:  'https://localhost:12345/app_test.php/'
+            browser_name: 'firefox'
+            javascript_session: selenium2
+            #selenium2: ~
+            selenium2:
+                wd_host: 'http://192.168.1.45:4444/wd/hub'

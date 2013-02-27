@@ -1,0 +1,26 @@
+php_admin_value auto_prepend_file "/var/www/xhprof/external/header.php"
+php_admin_value xdebug.profiler_enable 1
+
+<VirtualHost *:80>
+    ServerName xhprof.<%= tld_domain %>
+    DocumentRoot "/var/www/xhprof/xhprof_html"
+
+    <Directory "/var/www/xhprof/xhprof_html">
+        Options Indexes Includes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    <Directory "/var/www/xhprof">
+        Options +FollowSymlinks +ExecCgi
+        AddHandler php5-script .php
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+
+        php_admin_value auto_prepend_file none
+        php_admin_value xdebug.profiler_enable 0
+    </Directory>
+</VirtualHost>
+

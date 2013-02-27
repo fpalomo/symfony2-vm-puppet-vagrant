@@ -1,0 +1,35 @@
+imports:
+    - { resource: config.yml }
+
+framework:
+    test: ~
+    profiler: { only_exceptions: false }
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false
+
+doctrine:
+  dbal:
+    dbname:   %database_name%_test
+
+swiftmailer:
+    disable_delivery: true
+
+monolog:
+    handlers:
+        main:
+            type:  stream
+            path:  %kernel.logs_dir%/%kernel.environment%.log
+            level: debug
+        firephp:
+            type:  firephp
+            level: info
+
+security:
+    providers:
+        in_memory:
+            memory:
+                users:
+                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
